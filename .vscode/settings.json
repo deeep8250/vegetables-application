@@ -1,0 +1,11 @@
+{
+    "editor.suggestSelection": "recentlyUsed",
+    "editor.inlineSuggest.showToolbar": "always",
+    "editor.inlineSuggest.suppressSuggestions": true,
+    "editor.quickSuggestions": {
+        "other": "inline"
+    },
+    "files.autoSave": "onFocusChange",
+    "editor.autoClosingBrackets": "always",
+    "editor.acceptSuggestionOnEnter": "off"
+}

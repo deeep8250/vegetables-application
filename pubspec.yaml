@@ -1,0 +1,44 @@
+name: first
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - images/logo2.png
+    - images/logo.jpg
+    - images/feedback.png
+    - images/order history.png
+    - images/setting.png
+    - images/sign out.png
+    - images/img.png
+    - images/card.jpeg
+
+  fonts:
+    - family: Prof
+      fonts:
+        - asset: fonts/prof.ttf
+
+    - family: baby
+      fonts:
+        - asset: fonts/prof.ttf
+
+    - family: cute
+      fonts:
+        - asset: fonts/cute.ttf
