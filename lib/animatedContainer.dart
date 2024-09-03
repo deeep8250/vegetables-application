@@ -44,7 +44,7 @@ class _ResponsiveContainerState extends State<ResponsiveContainer> {
                 });
               },
               child: Image.asset(
-                'images/setting.png',
+                widget.imagepath,
                 width: 50,
                 height: 50,
               ),
@@ -75,7 +75,7 @@ class _ResponsiveContainerState extends State<ResponsiveContainer> {
               duration: Duration(milliseconds: 600),
               height: isEx ? screenHeight * 0.34 : 0,
               width: isEx ? screenWidth * 0.4 : 0,
-              child: Image.asset('images/setting.png'),
+              child: Image.asset(widget.imagepath),
             ),
           ),
 

@@ -29,6 +29,17 @@ flutter:
     - images/sign out.png
     - images/img.png
     - images/card.jpeg
+    - icons/apple.png
+    -  icons/banana.png
+    -  icons/brocole.png
+    -  icons/carrot.png
+    -  icons/cucumber.png
+    -  icons/grapes.png
+    -  icons/orange.png
+    -  icons/strawberry.png
+    -  icons/tomato.png
+    -  icons/unknownf.png
+
 
   fonts:
     - family: Prof

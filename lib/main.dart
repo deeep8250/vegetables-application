@@ -1,16 +1,16 @@
 
 import 'package:flutter/material.dart';
 
-void main() => runApp(const firstpage());
+void main() => runApp( firstpage());
 
 class firstpage extends StatelessWidget {
-  const firstpage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const mainsc(),
+      home:  mainsc(),
       theme: ThemeData(
         appBarTheme: AppBarTheme(color: Colors.green .shade600),
       ),
@@ -19,7 +19,7 @@ class firstpage extends StatelessWidget {
 }
 
 class mainsc extends StatefulWidget {
-  const mainsc({super.key});
+
 
   @override
   State<StatefulWidget> createState() => mainscState();
@@ -46,7 +46,7 @@ class mainscState extends State<mainsc> {
 
            ),
         ],
-      ),
+        ),
       ),
 
     );
