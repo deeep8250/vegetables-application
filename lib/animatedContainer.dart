@@ -1,9 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(animatedContainer());
+void main() => runApp(const animatedContainer());
 
 class animatedContainer extends StatelessWidget {
+  const animatedContainer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,7 +18,7 @@ class animatedContainer extends StatelessWidget {
 class ResponsiveContainer extends StatefulWidget {
   String imagepath;
 
-  ResponsiveContainer({required this.imagepath});
+  ResponsiveContainer({super.key, required this.imagepath});
 
   @override
   State<StatefulWidget> createState() => _ResponsiveContainerState();
@@ -59,7 +60,7 @@ class _ResponsiveContainerState extends State<ResponsiveContainer> {
             },
             child: Center(
               child: AnimatedContainer(
-                duration: Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 300),
                 width: isEx ? screenWidth : 0,
                 height: isEx ? screenHeight : 0,
                 color: Colors.transparent,
@@ -70,9 +71,9 @@ class _ResponsiveContainerState extends State<ResponsiveContainer> {
           AnimatedPositioned(
             top: isEx ? screenHeight * 0.1 : screenHeight * 0.27,
             left: isEx ? (screenWidth / 2.9) : screenWidth / 2,
-            duration: Duration(milliseconds: 700),
+            duration: const Duration(milliseconds: 700),
             child: AnimatedContainer(
-              duration: Duration(milliseconds: 600),
+              duration: const Duration(milliseconds: 600),
               height: isEx ? screenHeight * 0.34 : 0,
               width: isEx ? screenWidth * 0.4 : 0,
               child: Image.asset(widget.imagepath),
@@ -90,9 +91,9 @@ class _ResponsiveContainerState extends State<ResponsiveContainer> {
                 .width * 0.3,
             child: AnimatedOpacity(
               opacity: isEx ? 1.0 : 0.0,
-              duration: Duration(milliseconds: 500),
+              duration: const Duration(milliseconds: 500),
               child: AnimatedContainer(
-                duration: Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 500),
                 width: MediaQuery
                     .of(context)
                     .size
@@ -125,9 +126,9 @@ class _ResponsiveContainerState extends State<ResponsiveContainer> {
                 .width * 0.59,
             child: AnimatedOpacity(
               opacity: isEx ? 1.0 : 0.0,
-              duration: Duration(milliseconds: 500),
+              duration: const Duration(milliseconds: 500),
               child: AnimatedContainer(
-                duration: Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 500),
                 width: MediaQuery
                     .of(context)
                     .size

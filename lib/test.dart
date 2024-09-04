@@ -1,90 +1,151 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(ert());
+void main() => runApp(const MyApp());
 
-class ert extends StatelessWidget {
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: we(),
+    return const MaterialApp(
+      home: HomeScreen(),
     );
   }
 }
 
-class we extends StatefulWidget {
-  State<StatefulWidget> createState() => weState();
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<StatefulWidget> createState() => HomeScreenState();
 }
 
-class weState extends State {
-  int showindex = -1;
+class HomeScreenState extends State<HomeScreen> {
+  int showIndex = -1;
   List<String> image = [
     'icons/apple.png',
     'icons/banana.png',
-    'icons/tomato.png'
+    'icons/brocole.png',
+    'icons/carrot.png',
+    'icons/cucumber.png',
+    'icons/grapes.png',
+    'icons/orange.png',
+    'icons/strawberry.png',
+    'icons/unknownf.png',
+    'icons/apple.png',
+    'icons/banana.png',
+    'icons/brocole.png',
+    'icons/carrot.png',
+    'icons/cucumber.png',
+    'icons/grapes.png',
+    'icons/orange.png',
+    'icons/strawberry.png',
+    'icons/unknownf.png',
+    'icons/apple.png',
+    'icons/banana.png',
+    'icons/brocole.png',
+    'icons/carrot.png',
+    'icons/cucumber.png',
+    'icons/grapes.png',
+    'icons/orange.png',
+    'icons/strawberry.png',
+    'icons/unknownf.png',
+    'icons/apple.png',
+    'icons/banana.png',
+    'icons/brocole.png',
+    'icons/carrot.png',
+    'icons/cucumber.png',
+    'icons/grapes.png',
+    'icons/orange.png',
+    'icons/strawberry.png',
+    'icons/unknownf.png',
   ];
 
   @override
   Widget build(BuildContext context) {
-    final deviceWT = MediaQuery.of(context).size.width;
-    final deviceHT = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
+    final deviceHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: Stack(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: deviceHT * 0.16),
+            padding: EdgeInsets.only(top: deviceHeight * 0.16),
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 2.0, crossAxisCount: 3),
+                crossAxisCount: _getCrossAxisCount(context),
+                crossAxisSpacing: 5,
+                mainAxisSpacing: 5,
+              ),
               itemCount: image.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
                     setState(() {
-                      if (showindex == index) {
-                        showindex = -1;
-                      } else {
-                        showindex = index;
-                      }
+                      showIndex = (showIndex == index) ? -1 : index;
                     });
                   },
                   child: AnimatedContainer(
-                    width: 100,
-                    height: 100,
-                    duration: Duration(milliseconds: 500),
+                    duration: const Duration(milliseconds: 500),
                     child: Container(
-                      child: Image.asset(image[index]),
-                      width: 100,
-                      height: 100,
+                      width: 10,
+                      height: 200,
+
+                      padding: const EdgeInsets.all(1.0),
+                      transform: Matrix4.identity()
+                        ..translate(showIndex == index ? 0 : 0,
+                            showIndex == index ? -10 : 0),
+                      child: Stack(
+                        children: [
+                          Center(child: Image.asset(image[index],fit: BoxFit.fill,)),
+                        ],
+                      ),
                     ),
                   ),
                 );
               },
             ),
           ),
-          if (showindex >= 0)
+          if (showIndex >= 0)
             Positioned(
-              top: 10,
-              left: (deviceWT/2)-100,
+              top: 0,
+              left: 0,
               child: GestureDetector(
-                onTap: (){
+                onTap: () {
                   setState(() {
-                   showindex = -1;
+                    showIndex = -1;
                   });
                 },
                 child: AnimatedContainer(
-                    width: 200,
-                    height: 200,
-
-                    duration: Duration(milliseconds: 500),
-                    child: Image.asset(image[showindex],
-                      width: 200,height: 200,)
+                  width: deviceWidth,
+                  height: deviceHeight,
+                  color: Colors.black38,
+                  duration: const Duration(milliseconds: 500),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: deviceWidth * 0.8,
+                        height: deviceHeight * 0.8,
+                        child: Image.asset(
+                          image[showIndex],
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      IconButton(onPressed:(){}, icon: Icon(Icons.shopping_cart,color: Colors.green,))
+                    ],
+                  ),
                 ),
               ),
-            )
+            ),
         ],
       ),
     );
+  }
+
+  int _getCrossAxisCount(BuildContext context) {
+    // Determine the number of columns based on screen width
+    double screenWidth = MediaQuery.of(context).size.width;
+    int crossAxisCount = (screenWidth / 100).floor(); // 100 is the width of each grid item
+    return crossAxisCount > 0 ? crossAxisCount : 1;
   }
 }

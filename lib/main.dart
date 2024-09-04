@@ -1,16 +1,18 @@
 
 import 'package:flutter/material.dart';
 
-void main() => runApp( firstpage());
+void main() => runApp( const firstpage());
 
 class firstpage extends StatelessWidget {
+  const firstpage({super.key});
+
 
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:  mainsc(),
+      home:  const mainsc(),
       theme: ThemeData(
         appBarTheme: AppBarTheme(color: Colors.green .shade600),
       ),
@@ -19,6 +21,8 @@ class firstpage extends StatelessWidget {
 }
 
 class mainsc extends StatefulWidget {
+  const mainsc({super.key});
+
 
 
   @override
@@ -34,11 +38,11 @@ class mainscState extends State<mainsc> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: height*0.06,
-        title: Stack(
+        title: const Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 20,  ),
-            child: Container(width: 50,height:40,child: CircleAvatar(backgroundImage:AssetImage('images/logo2.png'),)),
+            padding: EdgeInsets.only(left: 20,  ),
+            child: SizedBox(width: 50,height:40,child: CircleAvatar(backgroundImage:AssetImage('images/logo2.png'),)),
           ),
           Padding(padding: EdgeInsets.only(left: 80,top: 6),
 

@@ -1,13 +1,14 @@
 import 'package:first/animatedContainer.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(randompositionS());
+void main() => runApp(const randompositionS());
 
 class randompositionS extends StatelessWidget {
+  const randompositionS({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: randomposition(),
     );
@@ -15,6 +16,9 @@ class randompositionS extends StatelessWidget {
 }
 
 class randomposition extends StatefulWidget {
+  const randomposition({super.key});
+
+  @override
   State<StatefulWidget> createState() => _random();
 }
 
@@ -53,7 +57,7 @@ class _random extends State {
     final shuffleList = func();
     return Scaffold(
       body: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             childAspectRatio: 1.0,
             crossAxisCount: 3,
           ),
@@ -63,7 +67,7 @@ class _random extends State {
             return Container(
 
 
-              margin: EdgeInsets.all(2),
+              margin: const EdgeInsets.all(2),
               child: InkWell(
                 onTap: (){},
                 child: ResponsiveContainer(imagepath: shuffleList[index]),
