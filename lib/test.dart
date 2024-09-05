@@ -21,10 +21,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  int showIndex = -1;
+  int showIndex = 1;
   List<String> image = [
-    'icons/apple.png',
     'icons/banana.png',
+    'icons/apple.png',
     'icons/brocole.png',
     'icons/carrot.png',
     'icons/cucumber.png',
@@ -32,8 +32,9 @@ class HomeScreenState extends State<HomeScreen> {
     'icons/orange.png',
     'icons/strawberry.png',
     'icons/unknownf.png',
-    'icons/apple.png',
+
     'icons/banana.png',
+    'icons/apple.png',
     'icons/brocole.png',
     'icons/carrot.png',
     'icons/cucumber.png',
@@ -41,8 +42,9 @@ class HomeScreenState extends State<HomeScreen> {
     'icons/orange.png',
     'icons/strawberry.png',
     'icons/unknownf.png',
-    'icons/apple.png',
+
     'icons/banana.png',
+    'icons/apple.png',
     'icons/brocole.png',
     'icons/carrot.png',
     'icons/cucumber.png',
@@ -50,8 +52,9 @@ class HomeScreenState extends State<HomeScreen> {
     'icons/orange.png',
     'icons/strawberry.png',
     'icons/unknownf.png',
-    'icons/apple.png',
+
     'icons/banana.png',
+    'icons/apple.png',
     'icons/brocole.png',
     'icons/carrot.png',
     'icons/cucumber.png',
@@ -59,6 +62,8 @@ class HomeScreenState extends State<HomeScreen> {
     'icons/orange.png',
     'icons/strawberry.png',
     'icons/unknownf.png',
+
+
   ];
 
   @override
@@ -82,8 +87,11 @@ class HomeScreenState extends State<HomeScreen> {
                 return GestureDetector(
                   onTap: () {
                     setState(() {
+
                       showIndex = (showIndex == index) ? -1 : index;
+
                     });
+
                   },
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 500),
@@ -97,9 +105,11 @@ class HomeScreenState extends State<HomeScreen> {
                             showIndex == index ? -10 : 0),
                       child: Stack(
                         children: [
+
                           Center(child: Image.asset(image[index],fit: BoxFit.fill,)),
                         ],
                       ),
+
                     ),
                   ),
                 );
@@ -127,7 +137,7 @@ class HomeScreenState extends State<HomeScreen> {
                         width: deviceWidth * 0.8,
                         height: deviceHeight * 0.8,
                         child: Image.asset(
-                          image[showIndex],
+                          "large_"+image[showIndex],
                           fit: BoxFit.contain,
                         ),
                       ),
