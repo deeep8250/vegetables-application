@@ -21,8 +21,9 @@ flutter:
   uses-material-design: true
 
 #  assets:
-#    -  icons/apple.png
+
 #    -  icons/banana.png
+#    -  icons/apple.png
 
 #    -  icons/brocole.png
 #    -  icons/carrot.png
