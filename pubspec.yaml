@@ -22,8 +22,8 @@ flutter:
 
 #  assets:
 
-#    -  icons/banana.png
 #    -  icons/apple.png
+#    -  icons/banana.png
 
 #    -  icons/brocole.png
 #    -  icons/carrot.png

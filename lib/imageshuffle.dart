@@ -24,8 +24,8 @@ class randomposition extends StatefulWidget {
 
 class _random extends State {
   List<String> image = [
-    'icons/apple.png',
-    'icons/apple.png',
+    'icons/banana.png',
+    'icons/banana.png',
     'icons/brocole.png',
     'icons/carrot.png',
     'icons/cucumber.png',
@@ -34,8 +34,8 @@ class _random extends State {
     'icons/strawberry.png',
     'icons/tomato.png',
     'icons/unknownf.png',
-    'icons/apple.png',
-    'icons/apple.png',
+    'icons/banana.png',
+    'icons/banana.png',
     'icons/brocole.png',
     'icons/carrot.png',
     'icons/cucumber.png',

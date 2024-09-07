@@ -21,17 +21,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  int showIndex = 1;
+  int showIndex = -1;
   List<String> image = [
-    'icons/banana.png',
-    'icons/apple.png',
-    'icons/brocole.png',
-    'icons/carrot.png',
-    'icons/cucumber.png',
-    'icons/grapes.png',
-    'icons/orange.png',
-    'icons/strawberry.png',
-    'icons/unknownf.png',
 
     'icons/banana.png',
     'icons/apple.png',
@@ -42,26 +33,17 @@ class HomeScreenState extends State<HomeScreen> {
     'icons/orange.png',
     'icons/strawberry.png',
     'icons/unknownf.png',
+    'icons/bedana.png',
+    'icons/avacado.png',
+    'icons/coconut.png',
+    'icons/dragon.png',
+    'icons/green_grapes.png',
+    'icons/guava.png',
+    'icons/mango.png',
+    'icons/papaya.png',
+    'icons/watermelon.png',
 
-    'icons/banana.png',
-    'icons/apple.png',
-    'icons/brocole.png',
-    'icons/carrot.png',
-    'icons/cucumber.png',
-    'icons/grapes.png',
-    'icons/orange.png',
-    'icons/strawberry.png',
-    'icons/unknownf.png',
 
-    'icons/banana.png',
-    'icons/apple.png',
-    'icons/brocole.png',
-    'icons/carrot.png',
-    'icons/cucumber.png',
-    'icons/grapes.png',
-    'icons/orange.png',
-    'icons/strawberry.png',
-    'icons/unknownf.png',
 
 
   ];
@@ -86,11 +68,11 @@ class HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
+
                     setState(() {
-
                       showIndex = (showIndex == index) ? -1 : index;
-
                     });
+                    print('$showIndex , ${image[showIndex]}');
 
                   },
                   child: AnimatedContainer(
@@ -105,7 +87,6 @@ class HomeScreenState extends State<HomeScreen> {
                             showIndex == index ? -10 : 0),
                       child: Stack(
                         children: [
-
                           Center(child: Image.asset(image[index],fit: BoxFit.fill,)),
                         ],
                       ),
@@ -131,19 +112,25 @@ class HomeScreenState extends State<HomeScreen> {
                   height: deviceHeight,
                   color: Colors.black38,
                   duration: const Duration(milliseconds: 500),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        width: deviceWidth * 0.8,
-                        height: deviceHeight * 0.8,
-                        child: Image.asset(
-                          "large_"+image[showIndex],
-                          fit: BoxFit.contain,
+                  child: Stack(
+                     children: [
+                      Positioned(
+                       bottom: deviceHeight*0.2,
+                        left: deviceWidth*0.06,
+                        child: SizedBox(
+                          width: deviceWidth * 0.9,
+                          height: deviceHeight * 0.9,
+                          child: Image.asset(
+                            "large_"+image[showIndex],
+                            fit: BoxFit.contain,
+                          ),
                         ),
                       ),
+
                       IconButton(onPressed:(){}, icon: Icon(Icons.shopping_cart,color: Colors.green,))
                     ],
-                  ),
+                  )
+
                 ),
               ),
             ),
