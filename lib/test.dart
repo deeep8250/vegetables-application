@@ -22,12 +22,10 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> {
   int showIndex = -1;
+  bool dvh = true;
   List<String> image = [
-
     'icons/banana.png',
     'icons/apple.png',
-    'icons/brocole.png',
-    'icons/carrot.png',
     'icons/cucumber.png',
     'icons/grapes.png',
     'icons/orange.png',
@@ -42,11 +40,22 @@ class HomeScreenState extends State<HomeScreen> {
     'icons/mango.png',
     'icons/papaya.png',
     'icons/watermelon.png',
-
-
-
-
+    'icons/khajur.png',
+    'icons/lichi.png',
+    'icons/pineapple.png',
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (MediaQuery.of(context).size.width > 750) {
+        setState(() {
+          dvh = !dvh;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,29 +77,26 @@ class HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-
                     setState(() {
                       showIndex = (showIndex == index) ? -1 : index;
                     });
-                    print('$showIndex , ${image[showIndex]}');
-
                   },
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 500),
                     child: Container(
                       width: 10,
                       height: 200,
-
                       padding: const EdgeInsets.all(1.0),
                       transform: Matrix4.identity()
                         ..translate(showIndex == index ? 0 : 0,
                             showIndex == index ? -10 : 0),
                       child: Stack(
                         children: [
-                          Center(child: Image.asset(image[index],fit: BoxFit.fill,)),
+                          Center(
+                            child: Image.asset(image[index], fit: BoxFit.fill),
+                          ),
                         ],
                       ),
-
                     ),
                   ),
                 );
@@ -110,27 +116,30 @@ class HomeScreenState extends State<HomeScreen> {
                 child: AnimatedContainer(
                   width: deviceWidth,
                   height: deviceHeight,
-                  color: Colors.black38,
+                  color: Colors.black54,
                   duration: const Duration(milliseconds: 500),
                   child: Stack(
-                     children: [
+                    children: [
                       Positioned(
-                       bottom: deviceHeight*0.2,
-                        left: deviceWidth*0.06,
+                        bottom: deviceHeight * 0.2,
+                        left: deviceWidth * 0.06,
                         child: SizedBox(
                           width: deviceWidth * 0.9,
                           height: deviceHeight * 0.9,
                           child: Image.asset(
-                            "large_"+image[showIndex],
+                            "large_" + image[showIndex],
                             fit: BoxFit.contain,
                           ),
                         ),
                       ),
-
-                      IconButton(onPressed:(){}, icon: Icon(Icons.shopping_cart,color: Colors.green,))
+                      IconButton(
+                        onPressed: () {
+                          // Add cart logic here
+                        },
+                        icon: Icon(Icons.shopping_cart, color: Colors.green),
+                      ),
                     ],
-                  )
-
+                  ),
                 ),
               ),
             ),
@@ -140,9 +149,8 @@ class HomeScreenState extends State<HomeScreen> {
   }
 
   int _getCrossAxisCount(BuildContext context) {
-    // Determine the number of columns based on screen width
     double screenWidth = MediaQuery.of(context).size.width;
-    int crossAxisCount = (screenWidth / 100).floor(); // 100 is the width of each grid item
+    int crossAxisCount = (screenWidth / 100).toInt();
     return crossAxisCount > 0 ? crossAxisCount : 1;
   }
 }
