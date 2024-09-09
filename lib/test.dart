@@ -26,23 +26,26 @@ class HomeScreenState extends State<HomeScreen> {
   List<String> image = [
     'icons/banana.png',
     'icons/apple.png',
-    'icons/cucumber.png',
-    'icons/grapes.png',
-    'icons/orange.png',
-    'icons/strawberry.png',
-    'icons/unknownf.png',
-    'icons/bedana.png',
     'icons/avacado.png',
+    'icons/bedana.png',
     'icons/coconut.png',
+    'icons/cucumber.png',
     'icons/dragon.png',
+    'icons/grapes.png',
     'icons/green_grapes.png',
     'icons/guava.png',
-    'icons/mango.png',
-    'icons/papaya.png',
-    'icons/watermelon.png',
     'icons/khajur.png',
     'icons/lichi.png',
+    'icons/mango.png',
+    'icons/orange.png',
+    'icons/papaya.png',
     'icons/pineapple.png',
+    'icons/strawberry.png',
+    'icons/unknownf.png',
+    'icons/watermelon.png',
+
+
+
   ];
 
   @override
@@ -83,23 +86,22 @@ class HomeScreenState extends State<HomeScreen> {
                   },
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 500),
+                    transform: Matrix4.identity()
+                      ..translate(0.0, showIndex == index ? -10.0 : 0.0),
                     child: Container(
-                      width: 10,
-                      height: 200,
                       padding: const EdgeInsets.all(1.0),
-                      transform: Matrix4.identity()
-                        ..translate(showIndex == index ? 0 : 0,
-                            showIndex == index ? -10 : 0),
                       child: Stack(
                         children: [
                           Center(
-                            child: Image.asset(image[index], fit: BoxFit.fill),
+                            child: Image.asset("assets/"+image[index], fit: BoxFit.fill),
                           ),
+
                         ],
                       ),
                     ),
                   ),
                 );
+
               },
             ),
           ),
@@ -127,16 +129,20 @@ class HomeScreenState extends State<HomeScreen> {
                           width: deviceWidth * 0.9,
                           height: deviceHeight * 0.9,
                           child: Image.asset(
-                            "large_" + image[showIndex],
+                            "assets/large_" + image[showIndex],
                             fit: BoxFit.contain,
                           ),
                         ),
                       ),
-                      IconButton(
-                        onPressed: () {
-                          // Add cart logic here
-                        },
-                        icon: Icon(Icons.shopping_cart, color: Colors.green),
+                      Positioned(
+                        right: 20.0,
+                        bottom: 30.0,
+                        child: IconButton(
+                          onPressed: () {
+                            // Add cart logic here
+                          },
+                          icon: const Icon(Icons.shopping_cart, color: Colors.green, size: 40.0),
+                        ),
                       ),
                     ],
                   ),

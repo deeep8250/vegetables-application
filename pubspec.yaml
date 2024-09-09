@@ -21,20 +21,10 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-#  assets:
 
-#    -  icons/banana.png
-#    -  icons/apple.png
-
-#    -  icons/brocole.png
-#    -  icons/carrot.png
-#    -  icons/cucumber.png
-#    -  icons/grapes.png
-#    -  icons/orange.png
-#    -  icons/strawberry.png
-#    -  icons/tomato.png
-#    -  icons/unknownf.png
-
+  assets:
+  - assets/icons/
+  - assets/large_icons/
 
 
   fonts:
