@@ -1,85 +1,72 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomeScreen(),
-    );
-  }
-}
+    return Container(
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Drawer Example'),
-      ),
-      drawer: AnimatedContainer(
-        duration: const Duration(milliseconds: 400),
-        width: MediaQuery.of(context).size.width*0.35,
-        height: MediaQuery.of(context).size.height*0.9,
-        child: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-                child: Text(
-                  'My Drawer Header',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
+      width: 200,
+      child: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero, // Remove any default padding from ListView
+          children: [
+            // Drawer header with avatar and name
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue, // Background color for header
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Colors.black,
+                    radius: 40.0, // Size of the avatar
+                    backgroundImage: AssetImage('assets/images/loginavtar.png'),
                   ),
-                ),
+                  SizedBox(height: 10), // Space between avatar and name
+                  Text(
+                    'Name', // User's name
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
-              ListTile(
-                leading: const Icon(Icons.home),
-                title: const Text('Home'),
-                onTap: () {
+            ),
 
-                  // Add navigation or other actions here
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.account_circle),
-                title: const Text('Profile'),
-                onTap: () {
-                  Navigator.pop(context); // Close the drawer
-                  // Add navigation or other actions here
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text('Settings'),
-                onTap: () {
-                  Navigator.pop(context); // Close the drawer
-                  // Add navigation or other actions here
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.logout),
-                title: const Text('Logout'),
-                onTap: () {
-                  Navigator.pop(context); // Close the drawer
-                  // Add navigation or other actions here
-                },
-              ),
-            ],
-          ),
+            // List of options below the header
+            ListTile(
+              leading: Icon(Icons.home), // Icon for the option
+              title: Text('Home'),        // Label for the option
+              onTap: () {
+                // Handle tap for 'Home' option
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Profile'),
+              onTap: () {
+                // Handle tap for 'Profile' option
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Settings'),
+              onTap: () {
+                // Handle tap for 'Settings' option
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('Logout'),
+              onTap: () {
+                // Handle tap for 'Logout' option
+              },
+            ),
+          ],
         ),
-      ),
-      body: const Center(
-        child: Text('Swipe from the left or tap the icon to open the drawer.'),
       ),
     );
   }

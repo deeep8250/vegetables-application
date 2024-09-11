@@ -1,4 +1,6 @@
 
+import 'package:first/appDrawer.dart';
+import 'package:first/fruits_list.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp( const firstpage());
@@ -42,7 +44,7 @@ class mainscState extends State<mainsc> {
         children: [
           Padding(
             padding: EdgeInsets.only(left: 20,  ),
-            child: SizedBox(width: 50,height:40,child: CircleAvatar(backgroundImage:AssetImage('images/logo2.png'),)),
+            child: SizedBox(width: 50,height:40,child: CircleAvatar(backgroundImage:AssetImage('assets/images/logo2.png'),)),
           ),
           Padding(padding: EdgeInsets.only(left: 80,top: 6),
 
@@ -51,7 +53,15 @@ class mainscState extends State<mainsc> {
            ),
         ],
         ),
+
       ),
+      drawer : Stack(
+        children: [
+           MyDrawer(),
+        ],
+      ),
+      body: MyAppq(),
+
 
     );
   }

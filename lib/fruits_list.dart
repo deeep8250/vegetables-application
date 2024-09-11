@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(const MyAppq());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyAppq extends StatelessWidget {
+  const MyAppq({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: HomeScreen(),
     );
   }
@@ -24,27 +25,25 @@ class HomeScreenState extends State<HomeScreen> {
   int showIndex = -1;
   bool dvh = true;
   List<String> image = [
-    'icons/banana.png',
-    'icons/apple.png',
-    'icons/avacado.png',
-    'icons/bedana.png',
-    'icons/coconut.png',
-    'icons/cucumber.png',
-    'icons/dragon.png',
-    'icons/grapes.png',
-    'icons/green_grapes.png',
-    'icons/guava.png',
-    'icons/khajur.png',
-    'icons/lichi.png',
-    'icons/mango.png',
-    'icons/orange.png',
-    'icons/papaya.png',
-    'icons/pineapple.png',
-    'icons/strawberry.png',
-    'icons/unknownf.png',
-    'icons/watermelon.png',
-
-
+    'fruits/banana.png',
+    'fruits/apple.png',
+    'fruits/avacado.png',
+    'fruits/bedana.png',
+    'fruits/coconut.png',
+    'fruits/cucumber.png',
+    'fruits/drag.png',
+    'fruits/grapes.png',
+    'fruits/green_grapes.png',
+    'fruits/guava.png',
+    'fruits/khajur.png',
+    'fruits/lichi.png',
+    'fruits/mango.png',
+    'fruits/orange.png',
+    'fruits/papaya.png',
+    'fruits/pineapple.png',
+    'fruits/strawberry.png',
+    'fruits/unknownf.png',
+    'fruits/watermelon.png',
 
   ];
 
@@ -69,7 +68,7 @@ class HomeScreenState extends State<HomeScreen> {
       body: Stack(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: deviceHeight * 0.16),
+            padding: EdgeInsets.only(top: deviceHeight * 0.01),
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: _getCrossAxisCount(context),
@@ -93,7 +92,7 @@ class HomeScreenState extends State<HomeScreen> {
                       child: Stack(
                         children: [
                           Center(
-                            child: Image.asset("assets/"+image[index], fit: BoxFit.fill),
+                            child: Image.asset("icons/"+image[index], fit: BoxFit.fill),
                           ),
 
                         ],
@@ -126,10 +125,10 @@ class HomeScreenState extends State<HomeScreen> {
                         bottom: deviceHeight * 0.2,
                         left: deviceWidth * 0.06,
                         child: SizedBox(
-                          width: deviceWidth * 0.9,
-                          height: deviceHeight * 0.9,
+                          width: deviceWidth * 0.8,
+                          height: deviceHeight * 0.8,
                           child: Image.asset(
-                            "assets/large_" + image[showIndex],
+                            "large_icons/" + image[showIndex],
                             fit: BoxFit.contain,
                           ),
                         ),

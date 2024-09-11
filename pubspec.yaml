@@ -25,6 +25,7 @@ flutter:
   assets:
   - assets/icons/
   - assets/large_icons/
+  - assets/images/
 
 
   fonts:
