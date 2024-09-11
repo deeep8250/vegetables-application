@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyAppq());
+void main() => runApp(const Myveges());
 
-class MyAppq extends StatelessWidget {
-  const MyAppq({super.key});
+class Myveges extends StatelessWidget {
+  const Myveges({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +58,11 @@ class HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: Stack(
         children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            color: Colors.white10 ,
+          ),
           Padding(
             padding: EdgeInsets.only(top: deviceHeight * 0.01),
             child: GridView.builder(
