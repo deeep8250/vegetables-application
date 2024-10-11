@@ -1,68 +1,102 @@
 import 'package:flutter/material.dart';
 
-class MyDrawer extends StatelessWidget {
+class MyResponsiveDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    // Get screen dimensions
+    final wid = MediaQuery.of(context).size.width;
+    final heit = MediaQuery.of(context).size.height;
 
-      width: 200,
-      child: Drawer(
+    // Determine if the device is large (e.g., a PC or tablet)
+    final isLargeScreen = wid > 600;
+
+
+    return Drawer(
+      width: isLargeScreen ? wid*0.35 : null, // Adjust the width to be 60% of the screen width
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/backg.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: ListView(
-          padding: EdgeInsets.zero, // Remove any default padding from ListView
+          padding: EdgeInsets.zero, // Remove default padding for the drawer
           children: [
-            // Drawer header with avatar and name
-            DrawerHeader(
+            // User header
+            UserAccountsDrawerHeader(
+              accountName: Text(
+                "User's name",
+                style: TextStyle(
+                  fontFamily: 'cute',
+                  fontSize: isLargeScreen ? 18 : wid * 0.05, // Fixed size on large screens
+                ),
+              ),
+              accountEmail: Text(
+                'xywz@gmail.com',
+                style: TextStyle(
+                  fontSize: isLargeScreen ? 16 : wid * 0.04, // Fixed size on large screens
+                ),
+              ),
+              currentAccountPicture: Container(
+                decoration: BoxDecoration(
+                  color: Colors.teal,
+                  borderRadius: BorderRadius.circular(wid * 0.12), // Responsive border radius
+                ),
+                child: ClipOval(
+                  child: Image.asset(
+                    'assets/images/loginavtar.png',
+                    fit: BoxFit.cover,
+                    width: isLargeScreen ? 80 : wid * 0.2, // Fixed size on large screens
+                    height: isLargeScreen ? 80 : wid * 0.2,
+                  ),
+                ),
+              ),
               decoration: BoxDecoration(
-                color: Colors.blue, // Background color for header
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.black,
-                    radius: 40.0, // Size of the avatar
-                    backgroundImage: AssetImage('assets/images/loginavtar.png'),
-                  ),
-                  SizedBox(height: 10), // Space between avatar and name
-                  Text(
-                    'Name', // User's name
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
+                image: DecorationImage(
+                  image: AssetImage('assets/images/backg.jpg'),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-
-            // List of options below the header
-            ListTile(
-              leading: Icon(Icons.home), // Icon for the option
-              title: Text('Home'),        // Label for the option
-              onTap: () {
-                // Handle tap for 'Home' option
+            SizedBox(height: heit * 0.02), // Responsive spacing
+            _buildListTile(
+              wid,
+              heit,
+              'assets/images/orderhistory.png',
+              'Cart',
+                  () {
+                // Handle cart tap
               },
             ),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text('Profile'),
-              onTap: () {
-                // Handle tap for 'Profile' option
+            SizedBox(height: heit * 0.02),
+            _buildListTile(
+              wid,
+              heit,
+              'assets/images/setting.png',
+              'Settings',
+                  () {
+                // Handle settings tap
               },
             ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
-              onTap: () {
-                // Handle tap for 'Settings' option
+            SizedBox(height: heit * 0.02),
+            _buildListTile(
+              wid,
+              heit,
+              'assets/images/feedback.png',
+              'Feedback',
+                  () {
+                // Handle feedback tap
               },
             ),
-            ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('Logout'),
-              onTap: () {
-                // Handle tap for 'Logout' option
+            SizedBox(height: heit * 0.02),
+            _buildListTile(
+              wid,
+              heit,
+              'assets/images/signout.png',
+              'Sign out',
+                  () {
+                // Handle sign out tap
               },
             ),
           ],
@@ -70,4 +104,44 @@ class MyDrawer extends StatelessWidget {
       ),
     );
   }
+
+  // A helper method to create a ListTile with responsiveness
+  Widget _buildListTile(double wid, double heit, String imagePath, String title, VoidCallback onTap) {
+    final isLargeScreen = wid > 600; // Determine large screen
+
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white60,
+        borderRadius: BorderRadius.circular(wid * 0.04), // Responsive border radius
+      ),
+      child: ListTile(
+        leading: Image.asset(
+          imagePath,
+          width: isLargeScreen ? 40 : wid * 0.08, // Fixed size for large screens
+        ),
+        title: Text(
+          title,
+          style: TextStyle(
+            fontSize: isLargeScreen ? 16 : wid * 0.045, // Fixed size for large screens
+            fontFamily: 'cute',
+          ),
+        ),
+        onTap: onTap,
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: Scaffold(
+      appBar: AppBar(
+        title: Text('Responsive Drawer Example'),
+      ),
+      drawer: MyResponsiveDrawer(), // Adding our responsive drawer
+      body: Center(
+        child: Text('Swipe from left to open the drawer'),
+      ),
+    ),
+  ));
 }

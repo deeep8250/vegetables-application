@@ -71,8 +71,8 @@ class mainscState extends State<mainsc> {
                 color: Colors.white,
                 child: TabBar(
                   tabs: [
-                    Tab(icon: Image.asset('images/fruitsb.png')),
-                    Tab(icon: Image.asset('images/vegesb.png')),
+                    Tab(icon: Image.asset('assets/images/fruitsb.png')),
+                    Tab(icon: Image.asset('assets/images/vegesb.png')),
                   ],
                   indicatorColor: Colors
                       .green, // Color of the selected tab underline// Color of the selected tab's text and icon
@@ -81,7 +81,7 @@ class mainscState extends State<mainsc> {
             ),
           ),
           drawer:
-              MyDrawer(),
+              MyResponsiveDrawer(),
 
           body:TabBarView(children: [
             MyAppq(),

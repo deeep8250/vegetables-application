@@ -23,7 +23,7 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> {
   int showIndex = -1;
-  bool dvh = true;
+   bool dvh = true;
   List<String> image = [
     'veges/bit.png',
     'veges/bringal.png',
@@ -34,6 +34,11 @@ class HomeScreenState extends State<HomeScreen> {
     'veges/potato.png',
     'veges/tomato.png',
     'veges/brocole.png',
+    'veges/potol.png',
+    'veges/kochudata.png',
+    'veges/kumro.png',
+    'veges/echor.png',
+
 
 
   ];
@@ -88,7 +93,7 @@ class HomeScreenState extends State<HomeScreen> {
                       child: Stack(
                         children: [
                           Center(
-                            child: Image.asset("icons/"+image[index], fit: BoxFit.fill),
+                            child: Image.asset("assets/icons/${image[index]}", fit: BoxFit.fill),
                           ),
 
                         ],
@@ -121,10 +126,10 @@ class HomeScreenState extends State<HomeScreen> {
                         bottom: deviceHeight * 0.2,
                         left: deviceWidth * 0.06,
                         child: SizedBox(
-                          width: deviceWidth * 0.8,
-                          height: deviceHeight * 0.8,
+
                           child: Image.asset(
-                            "large_icons/" + image[showIndex],
+
+                            "assets/large_icons/" + image[showIndex],
                             fit: BoxFit.contain,
                           ),
                         ),

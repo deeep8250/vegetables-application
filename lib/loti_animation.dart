@@ -1,73 +1,67 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+class Loti1 extends StatefulWidget {
+  final bool reciver;
+  final VoidCallback onAnimationComplete;
+  Loti1({Key? key, required this.reciver, required this.onAnimationComplete});
 
-class loti1 extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => lotiState();
+  State<StatefulWidget> createState() => LotiState();
 }
 
-class lotiState extends State<loti1> with SingleTickerProviderStateMixin {
-final player = AudioPlayer();
-  late AnimationController controller;
-  bool isAnimationVisible = true;
-  final AudioCache _audioCache = AudioCache();
+class LotiState extends State<Loti1> with SingleTickerProviderStateMixin {
+  bool isAnimationVisible = true; // To control animation visibility
+  final player = AudioPlayer();
+  late AnimationController _controller;
+  final AudioCache _audioCache = AudioCache(prefix: 'sound_effect/');
 
   @override
   void initState() {
-
     super.initState();
-    controller = AnimationController(vsync: this, duration: Duration(seconds: 2 ));
 
-    controller.addStatusListener((status) {
+    _controller = AnimationController(vsync: this);
+    // Add listener to check when animation is completed
+    _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         setState(() {
-          isAnimationVisible = false;
-          _audioCache.load('sound_effect/bell.mp3');
+          isAnimationVisible = false; // Hide the animation when done
         });
       }
     });
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: GestureDetector(
-          onTap: () {
-            setState(() {
-              controller.forward();
-            });
-
-            playSound();
-          },
-          child: isAnimationVisible ? Container(
-            width: 300, // Increased width
-            height: 300, // Increased height
-            child: LottieBuilder.network(
-              'https://lottie.host/b4235781-4299-48e5-8ccc-ef6a9f89097e/uT8gQhK51m.json', // Using a .json file
-              controller: controller,
-
-            ),
-          ):SizedBox.shrink(),
-
-        ),
-
-    );
-  }
-
-  @override
   void dispose() {
-    controller.dispose();
+    _controller.dispose(); // Dispose controller when no longer needed
     super.dispose();
   }
 
-  Future<void> playSound() async {
-    String path = 'sound_effect/bell.mp3';
-    await player.play(AssetSource(path));
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        width: 300, // Size for better visibility
+        height: 300,
+        color: Colors.transparent,
+        child: widget.reciver || !isAnimationVisible
+            ? null // Hide the animation after it completes
+            : LottieBuilder.network(
+                'https://lottie.host/b4235781-4299-48e5-8ccc-ef6a9f89097e/uT8gQhK51m.json',
+               controller: _controller,
+               onLoaded: (composition) {
+                 _controller
+                 ..duration = composition.duration
+                 ..forward(); // Start animation playback
+              },
+              errorBuilder: (context, error, stackTrace) {
+               return Text('Error loading animation: $error');
+            },
+        ),
+      ),
+    );
   }
+
+  void playSound() {}
 }
-
-
-

@@ -12,6 +12,9 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.8
   shared_preferences: ^2.0.15
+  audioplayers: ^6.1.0
+  lottie: ^3.1.2
+
 
 dev_dependencies:
   flutter_test:
@@ -23,9 +26,13 @@ flutter:
 
 
   assets:
-  - assets/icons/
-  - assets/large_icons/
-  - assets/images/
+    - assets/icons/fruits/
+    - assets/icons/veges/
+    - assets/large_icons/fruits/
+    - assets/large_icons/veges/
+    - assets/images/
+    - assets/animation/
+    - assets/sound_effect/
 
 
   fonts:

@@ -1,3 +1,7 @@
+import 'dart:math';
+
+import 'package:first/active_button_test.dart';
+import 'package:first/loti_animation.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyAppq());
@@ -22,8 +26,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
+   bool addtocart = true;
+
   int showIndex = -1;
-  bool dvh = true;
+  bool crcolor = true;
+
   List<String> image = [
     'fruits/banana.png',
     'fruits/apple.png',
@@ -44,19 +51,14 @@ class HomeScreenState extends State<HomeScreen> {
     'fruits/strawberry.png',
     'fruits/unknownf.png',
     'fruits/watermelon.png',
-
   ];
+  late List <String> add_to_cart_items = List.filled(image.length, '');
+  late List <bool> imageS = List.filled(image.length , true);
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (MediaQuery.of(context).size.width > 750) {
-        setState(() {
-          dvh = !dvh;
-        });
-      }
-    });
+    image.shuffle(Random());
   }
 
   @override
@@ -80,6 +82,7 @@ class HomeScreenState extends State<HomeScreen> {
                 return GestureDetector(
                   onTap: () {
                     setState(() {
+
                       showIndex = (showIndex == index) ? -1 : index;
                     });
                   },
@@ -92,20 +95,20 @@ class HomeScreenState extends State<HomeScreen> {
                       child: Stack(
                         children: [
                           Center(
-                            child: Image.asset("icons/"+image[index], fit: BoxFit.fill),
+                            child: Image.asset("assets/icons/" + image[index],
+                                fit: BoxFit.fill),
                           ),
-
                         ],
                       ),
                     ),
                   ),
                 );
-
               },
             ),
           ),
           if (showIndex >= 0)
             Positioned(
+
               top: 0,
               left: 0,
               child: GestureDetector(
@@ -122,27 +125,48 @@ class HomeScreenState extends State<HomeScreen> {
                   child: Stack(
                     children: [
                       Positioned(
-                        bottom: deviceHeight * 0.2,
-                        left: deviceWidth * 0.06,
+                        bottom: deviceHeight * 0.45,
+                        left: deviceWidth * 0.2,
                         child: SizedBox(
-                          width: deviceWidth * 0.8,
-                          height: deviceHeight * 0.8,
+                          width: deviceWidth * 0.6,
+                          height: deviceHeight * 0.6,
                           child: Image.asset(
-                            "large_icons/" + image[showIndex],
+                            "assets/large_icons/" + image[showIndex],
                             fit: BoxFit.contain,
                           ),
                         ),
                       ),
-                      Positioned(
-                        right: 20.0,
-                        bottom: 30.0,
-                        child: IconButton(
-                          onPressed: () {
-                            // Add cart logic here
-                          },
-                          icon: const Icon(Icons.shopping_cart, color: Colors.green, size: 40.0),
-                        ),
-                      ),
+                      // Positioned(
+                      //   bottom: 50,
+                      //   left: 80,
+                      //   child: GestureDetector(
+                      //     onTap: () {
+                      //       setState(() {
+                      //
+                      //         if(imageS[showIndex] == true){
+                      //           add_to_cart_items[showIndex] = image[showIndex];
+                      //           imageS[showIndex] = false;
+                      //         }else{
+                      //           add_to_cart_items[showIndex] = '';
+                      //           imageS[showIndex] = true;
+                      //         }
+                      //         print(add_to_cart_items);
+                      //
+                      //        // Toggle the addtocart value
+                      //       });
+                      //     },
+                      //     child: Container(
+                      //       color: imageS[showIndex] ? Colors.green : Colors.red,
+                      //       width: 200,
+                      //       height: 100,
+                      //     ),
+                      //   ),
+                      // ),
+                      Active1(index: showIndex, image: image, imageS: imageS, add_to_cart_items: add_to_cart_items),
+
+
+
+
                     ],
                   ),
                 ),
