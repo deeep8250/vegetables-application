@@ -27,7 +27,7 @@ class ActiveState extends State<Active1> {
     return Stack(
         children: [
           Positioned(
-            top: 20,
+            top: MediaQuery.of(context).size.height*0.6,
             child: GestureDetector(
               onTap: () {
                 setState(() {
@@ -44,17 +44,21 @@ class ActiveState extends State<Active1> {
                   // Toggle the add to cart value
                 });
               },
-              child: Container(
-                color: widget.imageS[widget.index] ? Colors.green : Colors.red,
-                width: 500,
-                height: 200,
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 500),
+                width: MediaQuery.of(context).size.width*0.13,
+                height: MediaQuery.of(context).size.height*0.15,
+                decoration: BoxDecoration(
+                  color: widget.imageS[widget.index] ? Colors.green : Colors.red,
+                  borderRadius: BorderRadius.circular(14),
+                ),
               ),
             ),
           ),
           if (showanimation ==true)
 
             Positioned(
-              bottom: 40,
+              bottom: 350,
               left: 100,
               child: SizedBox(
                 width: 100, // Fixed width for the Lottie animation

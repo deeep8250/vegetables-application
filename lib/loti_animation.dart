@@ -5,6 +5,7 @@ import 'package:lottie/lottie.dart';
 class Loti1 extends StatefulWidget {
   final bool reciver;
   final VoidCallback onAnimationComplete;
+
   Loti1({Key? key, required this.reciver, required this.onAnimationComplete});
 
   @override
@@ -38,28 +39,40 @@ class LotiState extends State<Loti1> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
+  void _handleButtonPress() {
+    setState(() {
+      isAnimationVisible = true; // Make the animation visible again
+      _controller.reset(); // Reset the animation to start from the beginning
+      _controller.forward(); // Start the animation
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        width: 300, // Size for better visibility
-        height: 300,
-        color: Colors.transparent,
-        child: widget.reciver || !isAnimationVisible
-            ? null // Hide the animation after it completes
-            : LottieBuilder.network(
-                'https://lottie.host/b4235781-4299-48e5-8ccc-ef6a9f89097e/uT8gQhK51m.json',
-               controller: _controller,
-               onLoaded: (composition) {
-                 _controller
-                 ..duration = composition.duration
-                 ..forward(); // Start animation playback
+      child:
+          // Animation Container
+          Container(
+            width: 300, // Size for better visibility
+            height: 300,
+            color: Colors.transparent,
+            child: !isAnimationVisible
+                ? null // Hide the animation after it completes
+                : LottieBuilder.network(
+              'https://lottie.host/b4235781-4299-48e5-8ccc-ef6a9f89097e/uT8gQhK51m.json',
+              controller: _controller,
+              onLoaded: (composition) {
+                _controller.duration =
+                    composition.duration * 0.5; // Set reduced duration
+                _controller.forward(); // Start the animation
               },
               errorBuilder: (context, error, stackTrace) {
-               return Text('Error loading animation: $error');
-            },
-        ),
-      ),
+                return Text('Error loading animation: $error');
+              },
+            ),
+          ),
+         // Space between animation and button
+          // Button
     );
   }
 
