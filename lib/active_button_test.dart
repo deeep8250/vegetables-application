@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'loti_animation.dart';
 
 class Active1 extends StatefulWidget {
-  final int index; // Accepting initial color
+  final int index;
   final List<String> image;
   final List<bool> imageS;
   final List<String> add_to_cart_items;
@@ -24,51 +24,85 @@ class ActiveState extends State<Active1> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-        children: [
-          Positioned(
-            top: MediaQuery.of(context).size.height*0.6,
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  if (widget.imageS[widget.index] == true) {
-                    widget.add_to_cart_items[widget.index] = widget.image[widget.index];
-                    widget.imageS[widget.index] = false;
-                    showanimation =  true;
-                  } else {
-                    widget.add_to_cart_items[widget.index] = '';
-                    widget.imageS[widget.index] = true;
-                  }
-                  print(widget.add_to_cart_items);
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // Determine screen size and assign specific values based on device size
+        double buttonWidth = constraints.maxWidth > 600 ? 240 : 200;
+        double buttonHeight =
+            constraints.maxWidth > 600 ? 100 : 80; // Reduced height for mobile
 
-                  // Toggle the add to cart value
-                });
-              },
-              child: AnimatedContainer(
-                duration: Duration(milliseconds: 500),
-                width: MediaQuery.of(context).size.width*0.13,
-                height: MediaQuery.of(context).size.height*0.15,
-                decoration: BoxDecoration(
-                  color: widget.imageS[widget.index] ? Colors.green : Colors.red,
-                  borderRadius: BorderRadius.circular(14),
+        return Stack(
+          children: [
+            Positioned(
+              // Center the button under the fruit image for all screen sizes
+              top: constraints.maxHeight * 0.6,
+              // Adjust this to control vertical alignment
+              left: (constraints.maxWidth - buttonWidth) / 2,
+              // Center horizontally
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    if (widget.imageS[widget.index] == true) {
+                      widget.add_to_cart_items[widget.index] =
+                          widget.image[widget.index];
+                      widget.imageS[widget.index] = false;
+                      showanimation = true;
+                    } else {
+                      widget.add_to_cart_items[widget.index] = '';
+                      widget.imageS[widget.index] = true;
+                    }
+                    print(widget.add_to_cart_items);
+                  });
+                },
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 500),
+                  width: buttonWidth,
+                  height: buttonHeight,
+                  // Dynamic height based on screen size
+                  decoration: BoxDecoration(
+                    color:
+                        widget.imageS[widget.index] ? Colors.green : Colors.redAccent,
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: Center(
+                    child: Text(
+                      widget.imageS[widget.index]
+                          ? 'Add to card'
+                          : 'Remove from card',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: widget.imageS[widget.index] ? 25 : 20,
+                          fontFamily: 'cute',
+                        fontWeight: FontWeight.bold,
+
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
-          if (showanimation ==true)
-
-            Positioned(
-              bottom: 350,
-              left: 100,
-              child: SizedBox(
-                width: 100, // Fixed width for the Lottie animation
-                height: 100, // Fixed height for the Lottie animation
-                child: Loti1(reciver: widget.imageS[widget.index], onAnimationComplete: () {setState(() {
-                  showanimation = false;
-                });  }, ),
+            if (showanimation == true)
+              Positioned(
+                bottom: 380,
+                left: constraints.maxWidth * 0.3,
+                child: SizedBox(
+                  width: constraints.maxWidth * 0.4,
+                  // Fixed width for the Lottie animation
+                  height: constraints.maxHeight * 0.4,
+                  // Fixed height for the Lottie animation
+                  child: Loti1(
+                    reciver: widget.imageS[widget.index],
+                    onAnimationComplete: () {
+                      setState(() {
+                        showanimation = false;
+                      });
+                    },
+                  ),
+                ),
               ),
-            ),
-        ],
+          ],
+        );
+      },
     );
   }
 }

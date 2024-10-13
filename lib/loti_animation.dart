@@ -52,24 +52,19 @@ class LotiState extends State<Loti1> with SingleTickerProviderStateMixin {
     return Center(
       child:
           // Animation Container
-          Container(
-            width: 300, // Size for better visibility
-            height: 300,
-            color: Colors.transparent,
-            child: !isAnimationVisible
-                ? null // Hide the animation after it completes
-                : LottieBuilder.network(
-              'https://lottie.host/b4235781-4299-48e5-8ccc-ef6a9f89097e/uT8gQhK51m.json',
-              controller: _controller,
-              onLoaded: (composition) {
-                _controller.duration =
-                    composition.duration * 0.5; // Set reduced duration
-                _controller.forward(); // Start the animation
-              },
-              errorBuilder: (context, error, stackTrace) {
-                return Text('Error loading animation: $error');
-              },
-            ),
+          !isAnimationVisible
+              ? null // Hide the animation after it completes
+              : LottieBuilder.network(
+                 'https://lottie.host/b4235781-4299-48e5-8ccc-ef6a9f89097e/uT8gQhK51m.json',
+                  controller: _controller,
+                  onLoaded: (composition) {
+                    _controller.duration =
+                     composition.duration * 0.5; // Set reduced duration
+                    _controller.forward(); // Start the animation
+                   },
+                  errorBuilder: (context, error, stackTrace) {
+                  return Text('Error loading animation: $error');
+            },
           ),
          // Space between animation and button
           // Button
