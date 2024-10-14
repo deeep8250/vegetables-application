@@ -14,7 +14,7 @@ class firstpage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const mainsc(),
       theme: ThemeData(
-        appBarTheme: AppBarTheme(color: Colors.green.shade600),
+        appBarTheme: AppBarTheme(color: Color(0xFF8BC34A)),
       ),
     );
   }
@@ -55,7 +55,7 @@ class mainscState extends State<mainsc> {
                 Padding(
                   padding: EdgeInsets.only(left: 80, top: 6),
                   child: Text(
-                    'Apna Bazar',
+                    'Bhojon Bazar',
                     style: TextStyle(
                       fontFamily: 'cute',
                       fontSize: 20,
@@ -68,14 +68,16 @@ class mainscState extends State<mainsc> {
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(50.0),
               child: Container(
-                color: Colors.white,
+                color: Colors.red,
+
+
                 child: TabBar(
                   tabs: [
                     Tab(icon: Image.asset('assets/images/fruitsb.png')),
                     Tab(icon: Image.asset('assets/images/vegesb.png')),
                   ],
                   indicatorColor: Colors
-                      .green, // Color of the selected tab underline// Color of the selected tab's text and icon
+                      .blue, // Color of the selected tab underline// Color of the selected tab's text and icon
                 ),
               ),
             ),

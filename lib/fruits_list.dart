@@ -52,6 +52,15 @@ class HomeScreenState extends State<HomeScreen> {
     'fruits/unknownf.png',
     'fruits/watermelon.png',
   ];
+
+
+
+
+
+
+
+
+
   late List <String> add_to_cart_items = List.filled(image.length, '');
   late List <bool> imageS = List.filled(image.length , true);
 
@@ -63,11 +72,15 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+
     final deviceWidth = MediaQuery.of(context).size.width;
     final deviceHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: Stack(
+      backgroundColor:Color(0xFFFFEB3B)
+      ,
+        body: Stack(
         children: [
           Padding(
             padding: EdgeInsets.only(top: deviceHeight * 0.01),

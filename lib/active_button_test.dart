@@ -24,18 +24,48 @@ class ActiveState extends State<Active1> {
 
   @override
   Widget build(BuildContext context) {
+    List<Map< String, dynamic >> imageMap = List.generate(
+        widget.image.length, (index)=> {'link': '', 'price': 0, 'quantity': 0},
+    );
+    for(int i = 0 ; i < widget.image.length ; i ++){
+      imageMap[i]['link'] = widget.image[i];
+      imageMap[i]['price'] = widget.index;
+    }
+    for(int i = 0 ; i < widget.image.length ; i ++){
+      print('${imageMap[i]}\n');
+    }
+
+
+    final imageSelect = widget.image[widget.index];
+       print('image selected $imageSelect');
+
+
+
     return LayoutBuilder(
       builder: (context, constraints) {
         // Determine screen size and assign specific values based on device size
         double buttonWidth = constraints.maxWidth > 600 ? 240 : 200;
-        double buttonHeight =
-            constraints.maxWidth > 600 ? 100 : 80; // Reduced height for mobile
+        double buttonHeight = constraints.maxWidth > 600 ? 100 : 80; // Reduced height for mobile
 
         return Stack(
           children: [
+            // Positioned(
+            //     top: constraints.maxHeight * 0.55,
+            //     left: (constraints.maxWidth-(buttonWidth -60))/2,
+            //     child: Container(
+            //       width: buttonWidth -60,
+            //       height: buttonHeight - 30,
+            //      decoration: BoxDecoration(
+            //        color: Colors.blue,
+            //        borderRadius: BorderRadius.circular(13),
+            //
+            //                               ),
+            //       child: Text(imageMap[widget.index]['price'].toString()),
+            //              )
+            // ),
             Positioned(
               // Center the button under the fruit image for all screen sizes
-              top: constraints.maxHeight * 0.6,
+              top: constraints.maxHeight * 0.7,
               // Adjust this to control vertical alignment
               left: (constraints.maxWidth - buttonWidth) / 2,
               // Center horizontally
@@ -60,8 +90,9 @@ class ActiveState extends State<Active1> {
                   height: buttonHeight,
                   // Dynamic height based on screen size
                   decoration: BoxDecoration(
-                    color:
-                        widget.imageS[widget.index] ? Colors.green : Colors.redAccent,
+                    color: widget.imageS[widget.index]
+                        ? Colors.green
+                        : Colors.redAccent,
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: Center(
@@ -70,11 +101,10 @@ class ActiveState extends State<Active1> {
                           ? 'Add to card'
                           : 'Remove from card',
                       style: TextStyle(
-                          color: Colors.black,
-                          fontSize: widget.imageS[widget.index] ? 25 : 20,
-                          fontFamily: 'cute',
+                        color: Colors.black,
+                        fontSize: widget.imageS[widget.index] ? 25 : 20,
+                        fontFamily: 'cute',
                         fontWeight: FontWeight.bold,
-
                       ),
                     ),
                   ),
