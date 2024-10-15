@@ -1,147 +1,195 @@
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(MyResponsiveDrawer());
+}
+
 class MyResponsiveDrawer extends StatelessWidget {
+  const MyResponsiveDrawer ({super.key});
+
+
+
   @override
   Widget build(BuildContext context) {
-    // Get screen dimensions
-    final wid = MediaQuery.of(context).size.width;
-    final heit = MediaQuery.of(context).size.height;
-
-    // Determine if the device is large (e.g., a PC or tablet)
-    final isLargeScreen = wid > 600;
-
-
-    return Drawer(
-      width: isLargeScreen ? wid*0.35 : null, // Adjust the width to be 60% of the screen width
-      child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/backg.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: ListView(
-          padding: EdgeInsets.zero, // Remove default padding for the drawer
-          children: [
-            // User header
-            UserAccountsDrawerHeader(
-              accountName: Text(
-                "User's name",
-                style: TextStyle(
-                  fontFamily: 'cute',
-                  fontSize: isLargeScreen ? 18 : wid * 0.05, // Fixed size on large screens
-                ),
-              ),
-              accountEmail: Text(
-                'xywz@gmail.com',
-                style: TextStyle(
-                  fontSize: isLargeScreen ? 16 : wid * 0.04, // Fixed size on large screens
-                ),
-              ),
-              currentAccountPicture: Container(
-                decoration: BoxDecoration(
-                  color: Colors.teal,
-                  borderRadius: BorderRadius.circular(wid * 0.12), // Responsive border radius
-                ),
-                child: ClipOval(
-                  child: Image.asset(
-                    'assets/images/loginavtar.png',
-                    fit: BoxFit.cover,
-                    width: isLargeScreen ? 80 : wid * 0.2, // Fixed size on large screens
-                    height: isLargeScreen ? 80 : wid * 0.2,
-                  ),
-                ),
-              ),
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/backg.jpg'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            SizedBox(height: heit * 0.02), // Responsive spacing
-            _buildListTile(
-              wid,
-              heit,
-              'assets/images/orderhistory.png',
-              'Cart',
-                  () {
-                // Handle cart tap
-              },
-            ),
-            SizedBox(height: heit * 0.02),
-            _buildListTile(
-              wid,
-              heit,
-              'assets/images/setting.png',
-              'Settings',
-                  () {
-                // Handle settings tap
-              },
-            ),
-            SizedBox(height: heit * 0.02),
-            _buildListTile(
-              wid,
-              heit,
-              'assets/images/feedback.png',
-              'Feedback',
-                  () {
-                // Handle feedback tap
-              },
-            ),
-            SizedBox(height: heit * 0.02),
-            _buildListTile(
-              wid,
-              heit,
-              'assets/images/signout.png',
-              'Sign out',
-                  () {
-                // Handle sign out tap
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  // A helper method to create a ListTile with responsiveness
-  Widget _buildListTile(double wid, double heit, String imagePath, String title, VoidCallback onTap) {
-    final isLargeScreen = wid > 600; // Determine large screen
-
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white60,
-        borderRadius: BorderRadius.circular(wid * 0.04), // Responsive border radius
-      ),
-      child: ListTile(
-        leading: Image.asset(
-          imagePath,
-          width: isLargeScreen ? 40 : wid * 0.08, // Fixed size for large screens
-        ),
-        title: Text(
-          title,
-          style: TextStyle(
-            fontSize: isLargeScreen ? 16 : wid * 0.045, // Fixed size for large screens
-            fontFamily: 'cute',
-          ),
-        ),
-        onTap: onTap,
-      ),
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
     );
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: Scaffold(
-      appBar: AppBar(
-        title: Text('Responsive Drawer Example'),
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final wid = MediaQuery.of(context).size.width;
+    final heit = MediaQuery.of(context).size.height;
+    precacheImage(const AssetImage('images/backg.jpg'), context);
+    return Drawer(
+      width: wid > 600 ? wid * 0.34 : wid * 0.5,
+      child: Stack(
+        children: [
+          // Background Image
+          Positioned.fill(
+            child: Opacity(
+              opacity: 0.6, // Adjust the opacity as needed
+              child: Image.asset(
+                'images/backg.jpg', // Your background image path
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          // ListView with options
+          ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              Container(
+                height: wid > 600 ? heit * 0.3 : heit* 0.3,
+                child: DrawerHeader(
+
+                  decoration: const BoxDecoration(
+                    color: Colors.transparent, // Make the header transparent
+                  ),
+                  child: Column(
+                    children: [
+                      ClipOval(
+                        child: Container(
+                          color: Colors.blue,
+                          child: Image.asset(
+                            'assets/images/loginavtar.png',
+                            fit: BoxFit.cover,
+                            width: wid > 1024 ? wid * 0.07 : 80, // Responsive width
+                            height: wid > 1024 ? wid * 0.07 : 80, // Responsive height
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        "User's name",
+                        style: TextStyle(
+                          fontFamily: 'cute',
+                          fontSize: wid > 600 ? wid * 0.018 : 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'xyz@gmail.com',
+                        style: TextStyle(
+                          fontFamily: 'cute',
+                          fontSize: wid > 600 ? wid * 0.012 : 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.black26,
+                ),
+
+                child: ListTile(
+                  leading: Image.asset('images/orderhistory.png'),
+                  title: Text(
+                    'My Cart',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontFamily: 'cute',
+                      fontSize: wid > 600 ? 20 : 16,
+                      color: Colors.green,
+                      shadows: [
+                        // Shadow(
+                        //   blurRadius: 2.0,
+                        //   color: Colors.white,
+                        //   offset: Offset(1.0 ,2.0),
+                        // ),
+                      ],
+                    ),
+                  ),
+                  onTap: () {
+                    // Handle the Add to Cart action here
+                  },
+                ),
+              ),
+              const SizedBox(height: 20,),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.black26,
+                ),
+                child: ListTile(
+                  leading: Image.asset('images/feedback.png'),
+                  title: Text('Feedback',
+                    style: TextStyle(fontWeight: FontWeight.bold,
+                      fontFamily: 'cute',
+                      fontSize: wid > 600 ? 20 : 16,
+                      color: Colors.green,
+
+                    ),
+                  ),
+                  onTap: () {
+                    // Handle the Feedback action here
+                  },
+                ),
+              ),
+              const SizedBox(height: 20,),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.black26,
+                ),
+                child: ListTile(
+                  leading: Image.asset('images/setting.png'),
+                  title: Text('Settings',
+                    style: TextStyle(fontWeight: FontWeight.bold,
+                      fontFamily: 'cute',
+                      fontSize: wid > 600 ? 20 : 16,
+                      color: Colors.green,
+                      shadows: [
+
+                      ],
+                    ),
+                  ),
+                  onTap: () {
+                    // Handle the Settings action here
+                  },
+                ),
+              ),
+              const SizedBox(height: 20,),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.black26,
+                ),
+                child: ListTile(
+                  leading: Image.asset('images/signout.png'),
+                  title: Text('Logout',
+                    style: TextStyle(fontWeight: FontWeight.bold,
+                      fontFamily: 'cute',
+                      fontSize: wid > 600 ? 20 : 16,
+                      color: Colors.green,
+                      shadows: [
+
+                      ],
+                    ),
+                  ),
+                  onTap: () {
+                    // Handle the Logout action here
+                  },
+                ),
+              ),
+              const SizedBox(height: 20,),
+            ],
+          ),
+        ],
       ),
-      drawer: MyResponsiveDrawer(), // Adding our responsive drawer
-      body: Center(
-        child: Text('Swipe from left to open the drawer'),
-      ),
-    ),
-  ));
+
+    );
+  }
 }

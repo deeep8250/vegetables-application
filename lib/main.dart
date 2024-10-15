@@ -10,6 +10,7 @@ class firstpage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    precacheImage(const AssetImage('images/backg.jpg'), context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: const mainsc(),
@@ -28,6 +29,9 @@ class mainsc extends StatefulWidget {
 }
 
 class mainscState extends State<mainsc> {
+
+
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -81,7 +85,7 @@ class mainscState extends State<mainsc> {
             ),
           ),
           drawer:
-              MyResponsiveDrawer(),
+              Container( width : width1 > 600 ? width1 * 0.34 : width1 * 0.5, child: MyResponsiveDrawer()),
 
           body:TabBarView(children: [
             MyAppq(),

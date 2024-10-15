@@ -11,7 +11,7 @@ class MyAppq extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
     );
@@ -19,7 +19,7 @@ class MyAppq extends StatelessWidget {
 }
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+
 
   @override
   State<StatefulWidget> createState() => HomeScreenState();
