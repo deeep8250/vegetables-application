@@ -1,85 +1,36 @@
-import 'dart:math';
 
 import 'package:first/active_button_test.dart';
-import 'package:first/loti_animation.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyAppq());
 
-class MyAppq extends StatelessWidget {
-  const MyAppq({super.key});
+class HomeScreen1 extends StatefulWidget {
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
-    );
-  }
-}
+  List <String> image = [];
+   List <String> add_to_cart_items = [];
+  late List <bool> imageS = [];
 
-class HomeScreen extends StatefulWidget {
-
+ HomeScreen1({required this.image,required this.add_to_cart_items, required this.imageS});
 
   @override
   State<StatefulWidget> createState() => HomeScreenState();
 }
 
-class HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen1> {
    bool addtocart = true;
 
   int showIndex = -1;
   bool crcolor = true;
 
-  List<String> image = [
-    'fruits/banana.png',
-    'fruits/apple.png',
-    'fruits/avacado.png',
-    'fruits/bedana.png',
-    'fruits/coconut.png',
-    'fruits/cucumber.png',
-    'fruits/drag.png',
-    'fruits/grapes.png',
-    'fruits/green_grapes.png',
-    'fruits/guava.png',
-    'fruits/khajur.png',
-    'fruits/lichi.png',
-    'fruits/mango.png',
-    'fruits/orange.png',
-    'fruits/papaya.png',
-    'fruits/pineapple.png',
-    'fruits/strawberry.png',
-    'fruits/unknownf.png',
-    'fruits/watermelon.png',
-  ];
 
-
-
-
-
-
-
-
-
-  late List <String> add_to_cart_items = List.filled(image.length, '');
-  late List <bool> imageS = List.filled(image.length , true);
-
-  @override
-  void initState() {
-    super.initState();
-    image.shuffle(Random());
-  }
 
   @override
   Widget build(BuildContext context) {
-
 
     final deviceWidth = MediaQuery.of(context).size.width;
     final deviceHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor:Color(0xFFFFEB3B)
-      ,
+      backgroundColor:Colors.green.shade100,
         body: Stack(
         children: [
           Padding(
@@ -90,7 +41,7 @@ class HomeScreenState extends State<HomeScreen> {
                 crossAxisSpacing: 5,
                 mainAxisSpacing: 5,
               ),
-              itemCount: image.length,
+              itemCount: widget.image.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
@@ -108,7 +59,7 @@ class HomeScreenState extends State<HomeScreen> {
                       child: Stack(
                         children: [
                           Center(
-                            child: Image.asset("assets/icons/" + image[index],
+                            child: Image.asset("assets/icons/" + widget.image[index],
                                 fit: BoxFit.fill),
                           ),
                         ],
@@ -144,38 +95,12 @@ class HomeScreenState extends State<HomeScreen> {
                           width: deviceWidth * 0.6,
                           height: deviceHeight * 0.6,
                           child: Image.asset(
-                            "assets/large_icons/" + image[showIndex],
+                            "assets/large_icons/" + widget.image[showIndex],
                             fit: BoxFit.contain,
                           ),
                         ),
                       ),
-                      // Positioned(
-                      //   bottom: 50,
-                      //   left: 80,
-                      //   child: GestureDetector(
-                      //     onTap: () {
-                      //       setState(() {
-                      //
-                      //         if(imageS[showIndex] == true){
-                      //           add_to_cart_items[showIndex] = image[showIndex];
-                      //           imageS[showIndex] = false;
-                      //         }else{
-                      //           add_to_cart_items[showIndex] = '';
-                      //           imageS[showIndex] = true;
-                      //         }
-                      //         print(add_to_cart_items);
-                      //
-                      //        // Toggle the addtocart value
-                      //       });
-                      //     },
-                      //     child: Container(
-                      //       color: imageS[showIndex] ? Colors.green : Colors.red,
-                      //       width: 200,
-                      //       height: 100,
-                      //     ),
-                      //   ),
-                      // ),
-                      Active1(index: showIndex, image: image, imageS: imageS, add_to_cart_items: add_to_cart_items),
+                      Active1(index: showIndex, image: widget.image, imageS: widget.imageS, add_to_cart_items: widget.add_to_cart_items,),
 
 
 

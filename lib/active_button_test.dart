@@ -31,9 +31,6 @@ class ActiveState extends State<Active1> {
       imageMap[i]['link'] = widget.image[i];
       imageMap[i]['price'] = widget.index;
     }
-    for(int i = 0 ; i < widget.image.length ; i ++){
-      print('${imageMap[i]}\n');
-    }
 
 
     final imageSelect = widget.image[widget.index];
@@ -49,20 +46,6 @@ class ActiveState extends State<Active1> {
 
         return Stack(
           children: [
-            // Positioned(
-            //     top: constraints.maxHeight * 0.55,
-            //     left: (constraints.maxWidth-(buttonWidth -60))/2,
-            //     child: Container(
-            //       width: buttonWidth -60,
-            //       height: buttonHeight - 30,
-            //      decoration: BoxDecoration(
-            //        color: Colors.blue,
-            //        borderRadius: BorderRadius.circular(13),
-            //
-            //                               ),
-            //       child: Text(imageMap[widget.index]['price'].toString()),
-            //              )
-            // ),
             Positioned(
               // Center the button under the fruit image for all screen sizes
               top: constraints.maxHeight * 0.7,
@@ -73,8 +56,7 @@ class ActiveState extends State<Active1> {
                 onTap: () {
                   setState(() {
                     if (widget.imageS[widget.index] == true) {
-                      widget.add_to_cart_items[widget.index] =
-                          widget.image[widget.index];
+                      widget.add_to_cart_items[widget.index] = widget.image[widget.index];
                       widget.imageS[widget.index] = false;
                       showanimation = true;
                     } else {

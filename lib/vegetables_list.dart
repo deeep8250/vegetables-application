@@ -61,7 +61,7 @@ class HomeScreenState extends State<HomeScreen> {
     final deviceHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor:Color(0xFFF5F5F5),
+      backgroundColor: Colors.green.shade100,
       body: Stack(
         children: [
           Container(
